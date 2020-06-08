@@ -316,6 +316,7 @@ fn write_dummy_dockerfile(
     let contents = f!("FROM {base_image}
 {extra_commands}
 ADD https://raw.githubusercontent.com/Anvil/bash-argsparse/master/argsparse.sh /
+RUN chmod a+r /argsparse.sh
 COPY {command_name} /{command_name}
 RUN chmod a+x /{command_name}
 ENTRYPOINT [ \"/{command_name}\" ]
