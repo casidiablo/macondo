@@ -7,6 +7,7 @@ os:
 - osx
 before_deploy:
   - mv target/release/macondo "target/release/macondo-$TRAVIS_TAG-$TRAVIS_OS_NAME"
+  - ls -l target/release/
 deploy:
   - provider: releases
     skip_cleanup: true
