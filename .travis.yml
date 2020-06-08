@@ -7,7 +7,6 @@ os:
 - osx
 before_deploy:
   - mv target/release/macondo "target/release/macondo-$TRAVIS_TAG-$TRAVIS_OS_NAME"
-  - ls -l target/release/
 deploy:
   - provider: releases
     skip_cleanup: true
@@ -16,6 +15,6 @@ deploy:
       condition: "$TRAVIS_RUST_VERSION = stable"
       branch: master
     file:
-      - target/release/macondo-*
+      - target/release/macondo-$TRAVIS_TAG-$TRAVIS_OS_NAME
     api_key:
       secure: Ofokb5ccCWij2mQTWUyUHeZZ19ZR4wb4ae8xlIaWFxldHweF/uQPNY5HzDQuqQmHLcdxV69DJtF1P3jkWBHdmgMj9kteI/qAYzrxftzSVJf6uvbNGB1dr+86FVrlOGa4kJrbyIQG8osJHHBNlj299ez+YgnTBIEMCqvm4Rt/sMK1tRS8c4UsMkDne0wABQMW1svmrS58dc8GmEv5pcPk0UtyLK9bpH3ElSyhNXCZI2Z6ZuR4Hv3F8SUaHYSATxhcmzDDr8B1X7x7+H79WBw1cqLO3E46phMLzoIaYv4f+Nx/t15zEY5QNlLi+japU7F3MgUJi2nzN9NBH2HdBtkk3HPfeVzuh8st7P/UcIwTncDcxLrX7ZXNVVO2fzOOGdv15Dndef4wl2nvKt0dZ6NUtrsFfPhIjCmBX7Fu/BlUYDapgSnDbguzce2eTXPEwfeBTSbqraYxRoGLU5OaLC4zgh6w9VIneXytuJMOjef8HicI071WOxexzyozTft3UhHfDu5w+oUSuyVJzQBIedo4OTespNmUhIEeCndJqda5dWfNfKx+TowOxrLK9KaxXaC85yTBtwxC65GLNu4sv6Q7qyqG7lWDB2pfee3CVGnEjQOAkLhpiCuiRT55jnVfIZvkBAuTg85HnNRyY3ilhsD2g85eHUxLJCc2tWhm0w511Ro=
