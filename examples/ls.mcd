@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+# @from alpine
+# @group Personal
+# @description prints pwd and list files
+# @version 0.1.0
+# @vol ~:~
+# @enable_dynamic_volume_mounts true
+# @align_with_host_user true
+# @workdir ~
+ls -l
+echo whoami $(whoami)
+echo pwd $(pwd)
