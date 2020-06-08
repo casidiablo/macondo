@@ -2,7 +2,9 @@
 
 # Install
 
-- Download binary
+- Download binary [Linux](https://github.com/casidiablo/macondo/releases/download/0.1.1/macondo-0.1.1-linux) | 
+  [MacOS](https://github.com/casidiablo/macondo/releases/download/0.1.1/macondo-0.1.1-osx)
+  (no Windows support yet)
 - Make it available in your `PATH`
 - Add a repository: `macondo repo add [FILE|DIR|HTTP]`
 
