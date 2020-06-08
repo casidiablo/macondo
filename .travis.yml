@@ -1,1 +1,20 @@
+
 language: rust
+script:
+  - cargo build --release --bin macondo
+os:
+- linux
+- osx
+before_deploy:
+  - mv target/release/macondo "target/release/macondo-$TRAVIS_TAG-$TRAVIS_OS_NAME"
+deploy:
+  - provider: releases
+    skip_cleanup: true
+    on:
+      tags: true
+      condition: "$TRAVIS_RUST_VERSION = stable"
+      branch: master
+    file:
+      - target/release/macondo-*
+    api_key:
+      secure: $GH
