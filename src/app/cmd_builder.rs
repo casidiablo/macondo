@@ -102,7 +102,7 @@ pub fn build_on_the_fly_if_necessary(cmd: Cmd, verbose: bool) -> Result<Cmd, Err
             // In this case we just run `docker build .` on the folder of the command
             docker::build_image(&command_name, context_path, None, verbose)?
         } else if cmd.registry.starts_with("AlpinePackages") {
-            // This means we should build an alpine image on-the-fly that
+            // This means we should build an Alpine image on-the-fly that
             // has the provided packages
             let packages = cmd.registry.replace("AlpinePackages", "");
             let extra_commands = format!("RUN apk --no-cache add bash {}", packages.trim());
@@ -110,6 +110,18 @@ pub fn build_on_the_fly_if_necessary(cmd: Cmd, verbose: bool) -> Result<Cmd, Err
                 &command_name,
                 context_path,
                 "alpine",
+                &extra_commands,
+                verbose,
+            )?
+        } else if cmd.registry.starts_with("UbuntuPackages") {
+            // This means we should build an Ubuntu image on-the-fly that
+            // has the provided packages
+            let packages = cmd.registry.replace("UbuntuPackages", "");
+            let extra_commands = format!("RUN apt-get update && apt-get install -y bash {} && rm -rf /var/lib/apt/lists/* && ln -sv /usr/games/* /usr/bin/ || exit 0", packages.trim());
+            docker::build_command_image_from_base(
+                &command_name,
+                context_path,
+                "ubuntu",
                 &extra_commands,
                 verbose,
             )?
