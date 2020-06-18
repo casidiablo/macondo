@@ -327,7 +327,6 @@ ENTRYPOINT [ \"/{command_name}\" ]
 }
 
 fn write_user_alignment_dockerfile(dockerfile: &mut File, base_image: &str) -> Result<(), Error> {
-    eprintln!("JAY JAY");
     let user_alignment = include_str!("user-alignment.sh")
         .replace(
             "MACONDO_HOST_USER_ID_PLACEHOLDER",
