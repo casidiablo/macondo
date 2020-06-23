@@ -31,10 +31,10 @@ RUN if [ "${MACONDO_HOST_USER_ID:-0}" -ne 0 ] && [ "${MACONDO_HOST_GROUP_ID:-0}"
             addgroup -g "${MACONDO_HOST_GROUP_ID}" "$group_name" || addgroup -gid "${MACONDO_HOST_GROUP_ID}" "$group_name" || exit 1;\
         fi &&\
         # create user (try alpine syntax and default to ubuntu syntax)
+        mkdir -p $MACONDO_HOST_HOME_DIR && chmod 755 $MACONDO_HOST_HOME_DIR && chown $MACONDO_HOST_USER_ID:$group_name $MACONDO_HOST_HOME_DIR &&\
         adduser --gecos "" --disabled-password --uid "$MACONDO_HOST_USER_ID" --ingroup "$group_name" --home "$MACONDO_HOST_HOME_DIR" "$MACONDO_HOST_USERNAME" --force-badname ||\
         adduser -D -u "$MACONDO_HOST_USER_ID" -G "$group_name" -h "$MACONDO_HOST_HOME_DIR" "$MACONDO_HOST_USERNAME" ||\
-        exit 1 && \
-        chmod 755 $MACONDO_HOST_HOME_DIR ;\
+        exit 1 ;\
     fi
 
 USER ${MACONDO_HOST_USERNAME}
