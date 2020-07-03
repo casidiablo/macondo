@@ -20,3 +20,7 @@ tempfile = "3"
 walkdir = "2"
 indicatif = "0.14.0"
 fstrings = "0.2.3"
+
+[profile.release]
+lto = true
+codegen-units = 1
