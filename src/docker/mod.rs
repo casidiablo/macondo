@@ -15,6 +15,7 @@ use tempfile::NamedTempFile;
 use tempfile::TempDir;
 use users::{get_current_gid, get_current_uid, get_current_username};
 use volumes::{get_dynamic_volume_mounts, parse_volume_mounting, DynamicVolumeMount, VolumeMount};
+use colored::*;
 
 pub struct DockerRun {
     image_name: String,
@@ -88,7 +89,7 @@ pub fn build_docker_run(
             });
         } else {
             // if we can't forward the ssh socket we should fail...
-            bail!("This commands requires access to SSH, most likely to clone a git repo. But the SSH auth socket was not found.");
+            eprintln!("{}", "This commands requires access to SSH, most likely to clone a git repo. But the SSH auth socket was not found.".red());
         }
     }
 
