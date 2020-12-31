@@ -1,5 +1,7 @@
 [experimental] generic, polyglot commands runner.
 
+Wrote a blogpost about it here: https://cristian.io/post/macondo/
+
 # Install
 
 - Download binary [Linux](https://github.com/casidiablo/macondo/releases/download/0.1.1/macondo-0.1.1-linux) | 
